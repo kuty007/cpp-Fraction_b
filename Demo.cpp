@@ -43,6 +43,7 @@ int main() {
     Fraction b;
     ss_zero_denominator >> c >> b;
     cout << c << " " << b << endl;
+    cout << "c+b" << c+b << endl;
 
 
 }
