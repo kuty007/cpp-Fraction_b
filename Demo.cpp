@@ -34,9 +34,15 @@ int main() {
 //    cout << "c >=b ? : " << (c >= b) << endl;
 //    if (a > 1.1) cout << " a is bigger than 1.1" << endl;
 //    else cout << " a is smaller than 1.1" << endl;
-    double num = 3.14159;
-    num = std::round(num * 1000.0) / 1000.0;
-    cout << num << endl;
+    std::stringstream ss_zero_denominator ("1 1");
+    Fraction a;
+    ss_zero_denominator >> a;
+    cout << a << endl;
+    ss_zero_denominator.str("6 8 3 1");
+    Fraction c;
+    Fraction b;
+    ss_zero_denominator >> c >> b;
+    cout << c << " " << b << endl;
 
 
 }

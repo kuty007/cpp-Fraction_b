@@ -3,6 +3,7 @@
 //
 
 #include "Fraction.hpp"
+#include <cmath>
 
 namespace ariel {
     Fraction::Fraction(int numerator, int denominator) {
@@ -11,19 +12,25 @@ namespace ariel {
         }
         this->numerator = numerator;
         this->denominator = denominator;
-        this->value = (float) numerator / denominator;
+        float value2 = (float) numerator / denominator;
+        this->value = std::round(value2 * 1000.0) / 1000.0;
         this->reduce();
-         if(this->denominator < 0){
+        if (this->denominator < 0) {
             this->numerator *= -1;
             this->denominator *= -1;
-       }
+        }
     }
 
     Fraction::Fraction(float value) {
         this->numerator = (int) (value * 1000);
         this->denominator = 1000;
-        this->value = (float) numerator / denominator;
+        float value2 = (float) numerator / denominator;
+        this->value = std::round(value2 * 1000.0) / 1000.0;
         this->reduce();
+        if (this->denominator < 0) {
+            this->numerator *= -1;
+            this->denominator *= -1;
+        }
 
 
     }
@@ -44,6 +51,10 @@ namespace ariel {
 
     void Fraction::setNumerator(int numerator) {
         this->numerator = numerator;
+    }
+
+    float Fraction::getValue() const {
+        return this->value;
     }
 
     void Fraction::setDenominator(int denominator) {
@@ -86,7 +97,8 @@ namespace ariel {
     }
 
     bool operator==(const Fraction &a, const Fraction &b) {
-        return a.numerator * b.denominator == b.numerator * a.denominator;
+//        return a.numerator * b.denominator == b.numerator * a.denominator;
+        return a.value == b.value;
     }
 
     bool operator!=(const Fraction &a, const Fraction &b) {
@@ -125,9 +137,13 @@ namespace ariel {
             fraction.numerator *= -1;
             fraction.denominator *= -1;
         }
-        fraction.value = (float) fraction.numerator / fraction.denominator;
+        float value = (float) fraction.numerator / fraction.denominator;
+        fraction.value =  std::round(value * 1000.0) / 1000.0;
+
         return is;
     }
+
+
 
     Fraction operator+(const float &a, const Fraction &b) {
         Fraction temp = Fraction(a);
@@ -179,24 +195,37 @@ namespace ariel {
     Fraction &Fraction::operator++() {
         this->numerator += this->denominator;
         this->reduce();
-        this->value = (float) numerator / denominator;
+        float value2 = (float) numerator / denominator;
+        this->value = std::round(value2 * 1000) / 1000;
+
         return *this;
     }
 
     Fraction Fraction::operator++(int) {
         Fraction temp = *this;
         this->numerator += this->denominator;
+        this->reduce();
+        float value2 = (float) numerator / denominator;
+        this->value = std::round(value2 * 1000) / 1000;
+
         return temp;
     }
 
     Fraction &Fraction::operator--() {
         this->numerator -= this->denominator;
+        this->reduce();
+        float value2 = (float) numerator / denominator;
+        this->value = std::round(value2 * 1000) / 1000;
+
         return *this;
     }
 
     Fraction Fraction::operator--(int) {
         Fraction temp = *this;
         this->numerator -= this->denominator;
+        this->reduce();
+        float value2 = (float) numerator / denominator;
+        this->value = std::round(value2 * 1000) / 1000;
         return temp;
     }
 

@@ -676,21 +676,23 @@ TEST_SUITE("Input and output operators tests") {
         ss_in >> frac1 >> frac2;
         CHECK_EQ(frac1, Fraction{1, 2});
         CHECK_EQ(frac2, Fraction{3, -4});
-
         std::stringstream ss_out;
         ss_out << frac1 << " and " << frac2;
+        cout <<  frac1<< " and " << frac2<<endl;
         CHECK(ss_out.str() == "1/2 and -3/4");
     }
 
     TEST_CASE(">> operator with zero denominator") {
         std::stringstream ss_zero_denominator("3 0");
-
         Fraction frac1;
         CHECK_THROWS_AS(ss_zero_denominator >> frac1, std::runtime_error);
-
+        cout << frac1 << endl;
+        cout << ss_zero_denominator.str() << endl;
         ss_zero_denominator.str("6 8 3 0");
+        cout << ss_zero_denominator.str() << endl;
         Fraction frac2, frac3;
         CHECK_THROWS_AS(ss_zero_denominator >> frac2 >> frac3, std::runtime_error);
+        cout << frac2 << " " << frac3 << endl;
     }
 
     TEST_CASE(">> operator with zero numerator") {

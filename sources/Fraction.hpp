@@ -22,6 +22,7 @@ namespace ariel {
         void setNumerator(int numerator);
         void setDenominator(int denominator);
         void reduce();
+        float getValue() const;
         Fraction& operator++();
         Fraction& operator--();
         Fraction operator++(int);
