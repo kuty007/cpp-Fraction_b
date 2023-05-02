@@ -41,9 +41,6 @@ int main() {
     ss_zero_denominator.str("6 8 3 1");
     Fraction c;
     Fraction b;
-    ss_zero_denominator >> c >> b;
-    cout << c << " " << b << endl;
-    cout << "c+b" << c+b << endl;
-
-
+   ss_zero_denominator >> c >> b;
+    cout << c << endl;
 }
