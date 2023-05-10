@@ -6,6 +6,7 @@ using namespace std;
 #ifndef CPP_FRACTION_A_FRACTION_H
 #define CPP_FRACTION_A_FRACTION_H
 
+
 namespace ariel {
 
     class Fraction {
@@ -13,6 +14,7 @@ namespace ariel {
         int numerator;
         int denominator;
         float value;
+
     public:
         Fraction(int numerator, int denominator);
         Fraction(float value);
@@ -61,8 +63,6 @@ namespace ariel {
         friend bool operator<(const Fraction& frac_a, const float& float_b);
         friend bool operator>=(const Fraction& frac_a, const float& float_b);
         friend bool operator<=(const Fraction& frac_a, const float& float_b);
-
-
     };
 
 } // ariel
